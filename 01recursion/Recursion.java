@@ -4,13 +4,19 @@ public class Recursion{
     }
     public int fact(int n){
 	int product;
-	if (n == 1){
+	if (n < 0){
+	    throw new IllegalArgumentException("n cannot be negative");
+	}
+	if (n == 1 || n == 0){
 	    return 1;
 	}
 	product = n * fact(n - 1);
 	return product;
     }
     public int fib(int n){
+	if (n < 0){
+	    throw new IllegalArgumentException("n cannot be negative");
+	}
 	if (n <= 1){
 	    return n;
 	}
@@ -19,6 +25,9 @@ public class Recursion{
 	}
     }
     public double sqrt(double n){
+	if (n < 0){
+	    throw new IllegalArgumentException("You cannot take the sqrt of a negative number");
+	}
 	return sqrtAlgorithm(1.0,n);
     }
     public double sqrtAlgorithm(double guess,double n){
