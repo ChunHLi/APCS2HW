@@ -8,14 +8,21 @@ public class MergeSort{
 	System.out.println(Arrays.toString(A));
     }
     public static void mergeSort(int[] a){
+	int[] b = mergeSortHelper(a);
+	int counter = 0;
+	while (counter < a.length){
+	    a[counter] = b[counter];
+	    counter += 1;
+	}
+    }
+    public static int[] mergeSortHelper(int[] a){
 	if (a.length <= 1){
+	    return a;
 	}
 	else{
 	    int[] b = Arrays.copyOfRange(a, 0, a.length/2);
 	    int[] c = Arrays.copyOfRange(a, a.length/2, a.length);
-	    mergeSort(b);
-	    mergeSort(c);
-	    a = merge(b,c);
+	    return merge(mergeSortHelper(b),mergeSortHelper(c));
 	}
 
     }
