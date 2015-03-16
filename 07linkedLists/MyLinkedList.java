@@ -4,20 +4,6 @@ public class MyLinkedList{
     int now = 0;
     int Size;
     public static void main(String[]args){
-	LNode NodeA = new LNode(5);
-	LNode NodeB = new LNode(6, NodeA);
-	LNode NodeC = new LNode(7, NodeB);
-	MyLinkedList A = new MyLinkedList(NodeC);
-	System.out.println(A.toString());
-	System.out.println(A.size());
-	A.add(0,8);
-	System.out.println(A.toString());
-	System.out.println(A.size());
-	System.out.println(A.getEnd());
-	A.remove(3);
-	System.out.println(A.toString());
-	A.remove(0);
-	System.out.println(A.toString());
     }
     public MyLinkedList(){
     }
@@ -62,19 +48,14 @@ public class MyLinkedList{
 	end = Current;
 	now = 0;
     }
-    public void add(int data){
-	LNode NNode = new LNode(8);
-	LNode Current = start;
-	while (now < Size - 1){
-	    Current = Current.getCDR();
-	    now += 1;
-	}
-	now = 0;
+    public boolean add(int data){
+	LNode NNode = new LNode(data);
+	end.setCDR(NNode);
+	end = NNode;
 	Size += 1;
-	Current.setCDR(NNode);
-	end = Current.getCDR();	
+	return true;
     }
-    public void add(int index, int data){
+    public boolean add(int index, int data){
     	if (index > Size){
     	    throw new IndexOutOfBoundsException();
     	}
@@ -88,8 +69,6 @@ public class MyLinkedList{
 	    now = 0;
 	}
     	else{
-	    //LNode shiftNode = new LNode(end.getData());
-	    //end.setCDR(shiftNode);
     	    LNode Current = start;
     	    while (now < index - 1){
     		Current = Current.getCDR();
@@ -99,20 +78,11 @@ public class MyLinkedList{
 	    LNode Attach = Current.getCDR();
 	    Current.setCDR(NNode);
 	    NNode.setCDR(Attach);
-	    
-	    //int data2 = Current.getData();
-	    //Current.setData(data);
-	    //Current = Current.getCDR();
-	    //while (index < Size - 1){
-	    //    int data3 = Current.getData();
-	    //	Current.setData(data2);
-	    //	data2 = data3;
-	    //	Current = Current.getCDR();				
-	    //}
 	    Size += 1;
 	    now = 0;
 
     	}
+	return true;
 	
     }
     public int remove(int index){
@@ -174,8 +144,5 @@ public class MyLinkedList{
 	List += current.getData() + " ]";
 	now = 0;
 	return List;
-    }
-    public int getEnd(){
-	return end.getData();
     }
 }
