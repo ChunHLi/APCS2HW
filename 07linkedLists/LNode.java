@@ -1,28 +1,28 @@
-public class LNode{
-    private LNode cdr;
-    private int data;
+public class LNode<T>{
+    private LNode<T> cdr;
+    private T data;
     public LNode(){
     }
-    public LNode(int Data){
+    public LNode(T Data){
 	setData(Data);
     }
-    public LNode(int Data, LNode CDR){
+    public LNode(T Data, LNode<T> CDR){
 	setData(Data);
 	setCDR(CDR);
     }
-    public int getData(){
+    public T getData(){
 	return data;
     }
-    public void setData(int Data){
+    public void setData(T Data){
 	data = Data;
     }
-    public LNode getCDR(){
+    public LNode<T> getCDR(){
 	return cdr;
     }
-    public void setCDR(LNode CDR){
+    public void setCDR(LNode<T> CDR){
 	cdr = CDR;
     }
-    public String toString(LNode Node){
+    public String toString(LNode<T> Node){
 	return "" + data;
     }
 }

@@ -1,28 +1,29 @@
-public class MyLinkedList{
-    LNode start;
-    LNode end;
+public class MyLinkedList<T>{
+    LNode<T> start;
+    LNode<T> end;
     int now = 0;
     int Size;
     public static void main(String[]args){
+	
     }
     public MyLinkedList(){
     }
-    public MyLinkedList(LNode N){
+    public MyLinkedList(LNode<T> N){
 	start = N;
 	Size = 1;
-	LNode Current = N;
+	LNode<T> Current = N;
 	while (Current.getCDR() != null){
 	    Size += 1;
 	    Current = Current.getCDR();
 	}
 	end = Current;
     }
-    public int get(int index){
+    public T get(int index){
 	if (index >= Size){
 	    throw new IndexOutOfBoundsException();
 	}
-	int Data = -1;
-	LNode Current = start;
+	T Data = null;
+	LNode<T> Current = start;
 	while (now < Size){
 	    if (now == index){
 		Data = Current.getData();
@@ -33,11 +34,11 @@ public class MyLinkedList{
 	now = 0;
 	return Data;
     }
-    public void set(int index, int data){
+    public void set(int index, T data){
 	if (index >= Size){
 	    throw new IndexOutOfBoundsException();
 	}
-	LNode Current = start;
+	LNode<T> Current = start;
 	while (now < Size){
 	    if (now == index){
 		Current.setData(data);
@@ -48,14 +49,14 @@ public class MyLinkedList{
 	end = Current;
 	now = 0;
     }
-    public boolean add(int data){
-	LNode NNode = new LNode(data);
+    public boolean add(T data){
+	LNode<T> NNode = new LNode<T>(data);
 	end.setCDR(NNode);
 	end = NNode;
 	Size += 1;
 	return true;
     }
-    public boolean add(int index, int data){
+    public boolean add(int index, T data){
     	if (index > Size){
     	    throw new IndexOutOfBoundsException();
     	}
@@ -63,19 +64,19 @@ public class MyLinkedList{
 	    add(data);
     	}
 	else if (index == 0){
-	    LNode NNode = new LNode(data,start);
+	    LNode<T> NNode = new LNode<T>(data,start);
 	    start = NNode;
 	    Size += 1;
 	    now = 0;
 	}
     	else{
-    	    LNode Current = start;
+    	    LNode<T> Current = start;
     	    while (now < index - 1){
     		Current = Current.getCDR();
     		now +=1;
     	    }
-	    LNode NNode = new LNode(data);
-	    LNode Attach = Current.getCDR();
+	    LNode<T> NNode = new LNode<T>(data);
+	    LNode<T> Attach = Current.getCDR();
 	    Current.setCDR(NNode);
 	    NNode.setCDR(Attach);
 	    Size += 1;
@@ -85,13 +86,13 @@ public class MyLinkedList{
 	return true;
 	
     }
-    public int remove(int index){
+    public T remove(int index){
 	if (index >= Size){
     	    throw new IndexOutOfBoundsException();
     	}
 	else{
-	    int returnint;
-	    LNode Current = start;
+	    T returnint = null;
+	    LNode<T> Current = start;
 	    if (index == 0){
 		returnint = start.getData();
 		start = Current.getCDR();
@@ -107,7 +108,7 @@ public class MyLinkedList{
 		    end = Current;
 		}
 		else{
-		    LNode Attach = Current.getCDR().getCDR();
+		    LNode<T> Attach = Current.getCDR().getCDR();
 		    returnint = Current.getCDR().getData();
 		    Current.setCDR(Attach);
 		}
@@ -120,8 +121,8 @@ public class MyLinkedList{
     public int size(){
 	return Size;
     }
-    public int indexOf(int data){
-	LNode Current = start;
+    public int indexOf(T data){
+	LNode<T> Current = start;
 	int index = -1;
 	while (now < Size){
 	    if (Current.getData() == data){
@@ -135,7 +136,7 @@ public class MyLinkedList{
     }
     public String toString(){
 	String List = "[ ";
-	LNode current = start;
+	LNode<T> current = start;
 	while (now < Size - 1){
 	    List += current.getData() + ", ";
 	    current = current.getCDR();
