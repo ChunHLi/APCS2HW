@@ -7,6 +7,9 @@ public class MergeSort{
 	mergeSort(A);
 	System.out.println(Arrays.toString(A));
     }
+    public static String name(){
+	return "li.shawn";
+    }
     public static void mergeSort(int[] a){
 	int[] b = mergeSortHelper(a);
 	int counter = 0;
