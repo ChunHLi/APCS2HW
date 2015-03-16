@@ -3,12 +3,12 @@ import java.util.Arrays;
 
 public class Sorts{
     public static void main(String[]args){
-	int[] A = {0,13,7,21,69,42,420,100};
+	//int[] A = {0,13,7,21,69,42,420,100};
 	//System.out.println(partition(A,4,5));
 	//System.out.println(Arrays.toString(A));
         //System.out.println(quickSelect(A,2));
-	quickSort(A);
-	System.out.println(Arrays.toString(A));
+	//quickSort(A);
+	//System.out.println(Arrays.toString(A));
     }
     public static void quickSort(int[] a){
 	quickSort(a, 0, a.length - 1);
@@ -19,6 +19,9 @@ public class Sorts{
 	    quickSort(a, s, i - 1);
 	    quickSort(a, i + 1, e);
 	}
+    }
+    public static String name(){
+	return "li.shawn";
     }
     public static int quickSelect(int[] a, int n){
 	return quickSelect(a,0,a.length - 1,n - 1);
