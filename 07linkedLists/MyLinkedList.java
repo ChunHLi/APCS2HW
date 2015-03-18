@@ -1,10 +1,58 @@
+import java.util.*;
 public class MyLinkedList<T>{
     LNode<T> start;
     LNode<T> end;
     int now = 0;
     int Size;
-    public static void main(String[]args){
-	
+    private class LNode<T>{
+	private LNode<T> cdr;
+	private T data;
+	public LNode(){
+	}
+	public LNode(T Data){
+	    setData(Data);
+	}
+	public LNode(T Data, LNode<T> CDR){
+	    setData(Data);
+	    setCDR(CDR);
+	}
+	public T getData(){
+	    return data;
+	}
+	public void setData(T Data){
+	    data = Data;
+	}
+	public LNode<T> getCDR(){
+	    return cdr;
+	}
+	public void setCDR(LNode<T> CDR){
+	    cdr = CDR;
+	}
+	public String toString(LNode<T> Node){
+	    return "" + data;
+	}
+    }
+    private class MyLLIterator<T> implements Iterator<T>{
+	LNode<T> stert;
+	public MyLLIterator(LNode<T> NNode){
+	    LNode<T> tmpStert = new LNode<T>(NNode.getData());
+	    stert = tmpStert;
+	}
+	public boolean hasNext(){
+	    return stert.getCDR() != null;
+	}
+	public T next(){
+	    if (hasNext()){
+		stert = stert.getCDR();
+		return stert.getData();
+	    }
+	    else{
+		throw new NoSuchElementException();
+	    }
+	}
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
     }
     public MyLinkedList(){
     }

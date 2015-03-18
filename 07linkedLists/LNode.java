@@ -3,10 +3,10 @@ public class LNode<T>{
     private T data;
     public LNode(){
     }
-    public LNode(T Data){
+    public LNode(int Data){
 	setData(Data);
     }
-    public LNode(T Data, LNode<T> CDR){
+    public LNode(int Data, LNode<T> CDR){
 	setData(Data);
 	setCDR(CDR);
     }
