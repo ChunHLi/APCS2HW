@@ -1,11 +1,11 @@
 import java.util.*;
 
 public class MyStacks<E>{
-    private LinkedList<E> plate;
+    private MyLinkedList<E> plate;
     private E topLayer;
     
     public MyStacks(){
-	plate = new LinkedList<E>();
+	plate = new MyLinkedList<E>();
     }
     
     public boolean empty(){
@@ -13,11 +13,11 @@ public class MyStacks<E>{
     }
     
     public E peek(){
-	return plate.getFirst();
+	return plate.get(0);
     }
     
     public E pop(){
-	return plate.removeFirst();
+	return plate.remove(0);
     }
     
     public E push(E moreLayers){
@@ -25,7 +25,7 @@ public class MyStacks<E>{
 	//    plate.add(moreLayers);
 	//}
 	//else{
-	plate.addFirst(moreLayers);
+	plate.add(0,moreLayers);
 	//}
 	topLayer = moreLayers;
 	return moreLayers;
