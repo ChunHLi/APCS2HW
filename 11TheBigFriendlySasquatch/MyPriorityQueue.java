@@ -34,4 +34,8 @@ public class MyPriorityQueue<T>{
 	PriorityQueue = new ArrayDeque<T>(PriorityQueueList);
     }
     
+    public T removeSmallest(){
+	PriorityList.removeFirst();
+	return PriorityQueue.removeFirst();
+    }
 }
