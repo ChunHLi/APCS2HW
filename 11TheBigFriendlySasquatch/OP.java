@@ -4,20 +4,29 @@ public class OP{
 
     int row;
     int col;
-    int distance;
+    int distanceTraveled;
+    int distanceFromEnd;
     OP previous;
 
     public OP(int Row, int Col, int Distance){
 	row = Row;
 	col = Col;
-	distance = Distance;
+	distanceTraveled = Distance;
 	previous = null;
     }
 
     public OP(int Row, int Col, int Distance, OP Previous){
 	row = Row;
 	col = Col;
-	distance = Distance;
+	distanceTraveled = Distance;
+	previous = Previous;
+    }
+
+    public OP(int Row, int Col, int DistanceTraveled, int DistanceFromEnd, OP Previous){
+	row = Row;
+	col = Col;
+	distanceTraveled = DistanceTraveled;
+	distanceFromEnd = DistanceFromEnd;
 	previous = Previous;
     }
 
@@ -30,7 +39,11 @@ public class OP{
     }
 
     public int getDistance(){
-	return distance;
+	return distanceTraveled;
+    }
+    
+    public int getDistanceFromEnd(){
+	return distanceFromEnd;
     }
     
     public OP getPrevious(){
@@ -46,7 +59,11 @@ public class OP{
     }
     
     public void setDistance(int Distance){
-	distance = Distance;
+	distanceTraveled = Distance;
+    }
+
+    public void setDistanceFromEnd(int Distance){
+	distanceFromEnd = Distance;
     }
     
     public void setPrevious(OP Previous){
