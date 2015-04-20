@@ -23,7 +23,7 @@ public class MyPriorityQueue<T>{
 		    PriorityList.add(n);
 		    break;
 		}
-		if (n > PriorityList.get(counter)){
+		if (n < PriorityList.get(counter)){
 		    PriorityQueueList.add(counter,t);
 		    PriorityList.add(counter,n);
 		    break;
@@ -37,5 +37,10 @@ public class MyPriorityQueue<T>{
     public T removeSmallest(){
 	PriorityList.removeFirst();
 	return PriorityQueue.removeFirst();
+    }
+    
+    public void clear(){
+	PriorityQueue.clear();
+	PriorityList.clear();
     }
 }
