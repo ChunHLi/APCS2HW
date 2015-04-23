@@ -12,12 +12,19 @@ public class TreeNode<E>{
     public TreeNode(E Data){
 	next = null;
 	data = Data;
-	
+	hasLeft = false;
+	hasRight = false;
+	leftLeaf = null;
+	rightLeaf = null;
     }
 
     public TreeNode(E Data, TreeNode Next){
 	next = Next;
 	data = Data;
+	hasLeft = false;
+	hasRight = false;
+	leftLeaf = null;
+	rightLeaf = null;
     }
 
     public E getData(){
