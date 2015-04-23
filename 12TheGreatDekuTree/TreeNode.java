@@ -10,50 +10,50 @@ public class TreeNode<E>{
     private E data;
 
     public TreeNode(E Data){
-	    next = null;
-	    data = Data;
+	next = null;
+	data = Data;
 	
     }
 
     public TreeNode(E Data, TreeNode Next){
-	    next = Next;
-	    data = Data;
+	next = Next;
+	data = Data;
     }
 
     public E getData(){
-	    return data;
+	return data;
     }
     public void setData(E Data){
-	    data = Data;
+	data = Data;
     }
 
     public TreeNode<E> getNext(){
-	    return next;
+	return next;
     }
 
     public void setNext(TreeNode<E> Next){
-	    next = Next;
+	next = Next;
     }
 
     public TreeNode<E> getLeft(){
-	    return leftLeaf;
+	return leftLeaf;
     }
 
     public void setLeft(TreeNode<E> Node){
-	    hasLeft = true;
-	    leftLeaf = Node;
+	hasLeft = true;
+	leftLeaf = Node;
     }
     
     public TreeNode<E> getRight(){
-	    return rightLeaf;
+	return rightLeaf;
     }
     
     public void setRight(TreeNode<E> Node){
-	    hasRight = true;
-	    rightLeaf = Node;
+	hasRight = true;
+	rightLeaf = Node;
     }
 
     public String toString(){
-	    return "" + data;
+	return "" + data;
     }
 }
