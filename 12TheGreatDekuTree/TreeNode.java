@@ -4,13 +4,11 @@ import java.util.*;
 public class TreeNode<E>{
     private TreeNode<E> leftLeaf;
     private TreeNode<E> rightLeaf;
-    private TreeNode<E> next;
     private boolean hasLeft;
     private boolean hasRight;
     private E data;
 
     public TreeNode(E Data){
-	next = null;
 	data = Data;
 	hasLeft = false;
 	hasRight = false;
@@ -18,13 +16,12 @@ public class TreeNode<E>{
 	rightLeaf = null;
     }
 
-    public TreeNode(E Data, TreeNode Next){
-	next = Next;
+    public TreeNode(E Data, TreeNode Left, TreeNode Right){
 	data = Data;
 	hasLeft = false;
 	hasRight = false;
-	leftLeaf = null;
-	rightLeaf = null;
+	leftLeaf = Left;
+	rightLeaf = Right;
     }
 
     public E getData(){
@@ -32,14 +29,6 @@ public class TreeNode<E>{
     }
     public void setData(E Data){
 	data = Data;
-    }
-
-    public TreeNode<E> getNext(){
-	return next;
-    }
-
-    public void setNext(TreeNode<E> Next){
-	next = Next;
     }
 
     public TreeNode<E> getLeft(){
@@ -62,5 +51,11 @@ public class TreeNode<E>{
 
     public String toString(){
 	return "" + data;
+    }
+    public boolean hasLeft(){
+	return hasLeft;
+    }
+    public boolean hasRight(){
+	return hasRight;
     }
 }
