@@ -50,13 +50,28 @@ public class BTree<E> {
       added to randomly.
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
-	if (curr.getNext() == null){
-	    curr.setNext(bn);
+	Random r = new Random();
+	if (!(curr.hasLeft() || curr.hasRight())){
+	    if (r.nextInt(2) == 0){
+		curr.setLeft(bn);
+	    }
+	    else{
+		curr.setRight(bn);
+	    }
 	}
-	else if (curr.getLeft() == null){
+	else if (curr.hasLeft() && !(curr.hasRight())){
+	    curr.setRight(bn);
+	}
+	else if ((!(curr.hasLeft())) && (curr.hasRight())){
+	    curr.setLeft(bn);
 	}
 	else{
-	    
+	    if (r.nextInt(2) == 0){
+		add(curr.getLeft(),bn);
+	    }
+	    else{
+		add(curr.getRight(),bn);
+	    }
 	}
     }
     
@@ -77,6 +92,13 @@ public class BTree<E> {
       pre-order Traversal
       ====================*/
     public void preOrder( TreeNode<E> curr ) {
+	System.out.print(curr.getData());
+	if (curr.hasLeft()){
+	    preOrder(curr.getLeft());
+	}
+	if (curr.hasRight()){
+	    preOrder(curr.getRight());
+	}
     }
 
 
@@ -88,6 +110,12 @@ public class BTree<E> {
       in-order Traversal
       ====================*/
     public void inOrder( TreeNode<E> curr ) {
+	if (curr.hasRight()){
+	    inOrder(curr.getRight());
+	}
+	if (curr.hasLeft()){
+	    inOrder(curr.getLeft());
+	}
     }
 
     /*======== public void postOrder() ==========
