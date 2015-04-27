@@ -51,7 +51,10 @@ public class BTree<E> {
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
 	Random r = new Random();
-	if (!(curr.hasLeft() || curr.hasRight())){
+	if (root == null){
+	    root = bn;
+	}
+	else if (!(curr.hasLeft() || curr.hasRight())){
 	    if (r.nextInt(2) == 0){
 		curr.setLeft(bn);
 	    }
@@ -92,7 +95,7 @@ public class BTree<E> {
       pre-order Traversal
       ====================*/
     public void preOrder( TreeNode<E> curr ) {
-	System.out.print(curr.getData());
+	System.out.print(curr);
 	if (curr.hasLeft()){
 	    preOrder(curr.getLeft());
 	}
@@ -110,11 +113,12 @@ public class BTree<E> {
       in-order Traversal
       ====================*/
     public void inOrder( TreeNode<E> curr ) {
-	if (curr.hasRight()){
-	    inOrder(curr.getRight());
-	}
 	if (curr.hasLeft()){
 	    inOrder(curr.getLeft());
+	}
+	System.out.print(curr);
+	if (curr.hasRight()){
+	    inOrder(curr.getRight());
 	}
     }
 
@@ -129,6 +133,13 @@ public class BTree<E> {
       jdyrlandweaver
       ====================*/
     public void postOrder( TreeNode<E> curr ) {
+	if (curr.hasLeft()){
+	    inOrder(curr.getLeft());
+	}
+	if (curr.hasRight()){
+	    inOrder(curr.getRight());
+	}
+	System.out.print(curr);
     }
     
     /*======== public int getHeight()) ==========
@@ -146,7 +157,25 @@ public class BTree<E> {
       
       ====================*/
     public int getHeight( TreeNode<E> curr ) {
-	return -1;
+	if (!(curr.hasLeft() || curr.hasRight())){
+	    return 1;
+	}
+	if (curr.hasLeft() && !(curr.hasRight())){
+	    return 1 + getHeight(curr.getLeft());
+	}
+	if ((!(curr.hasLeft())) && curr.hasRight()){
+	    return 1 + getHeight(curr.getRight());
+	}
+	else{
+	    int i = getHeight(curr.getLeft());
+	    int j = getHeight(curr.getRight());
+	    if (i > j){
+		return 1 + i;
+	    }
+	    else{
+		return 1 + j;
+	    }
+	}
     }
 
     /*======== public String getLevel() ==========
@@ -157,8 +186,25 @@ public class BTree<E> {
                given level, ordered left -> right
       
       ====================*/
+
+    public String getLevel(int Level){
+	return getLevel(root, Level, 1);
+    }
+
     public String getLevel( TreeNode<E> curr, int level, int currLevel ) {
-	return "";
+	if (level == currLevel){
+	    return "" + curr;
+	}
+	else{
+	    String String = "";
+	    if (curr.hasLeft()){
+		String += getLevel(curr.getLeft(),level,currLevel + 1);
+	    }
+	    if (curr.hasRight()){
+		String += getLevel(curr.getRight(),level, currLevel + 1);
+	    }
+	    return String;
+	}
     }
     
     /*======== public String toString()) ==========
@@ -180,7 +226,13 @@ public class BTree<E> {
             3  4   5
       ====================*/
     public String toString() {
-	return "";
+	String String = "";
+	int level = 0;
+	while (level < getHeight()){
+	    String += getLevel(level) + "\n";
+	    level += 1;
+	}
+	return String;
     }
 	
 
