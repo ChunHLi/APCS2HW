@@ -35,7 +35,7 @@ public class BSTree <T extends Comparable> {
 
       Add t to the correct place in the tree rooted at curr.
       ====================*/
-    private BSTreeNode<T> add(BSTreeNode<T> curr, BSTreeNode<T> t) {
+    private void add(BSTreeNode<T> curr, BSTreeNode<T> t) {
 	if (curr == null){
 	    curr = t;
 	}
@@ -55,7 +55,7 @@ public class BSTree <T extends Comparable> {
       Wrapper for the recursive remove method
       ====================*/
     public void remove( T c ) {
-	root = remove( root, c );
+	root = remove( root, c);
     }
 
     /*======== public BSTreeNode<T> remove() ==========
@@ -66,24 +66,88 @@ public class BSTree <T extends Comparable> {
       Should remove the value c from the tree rooted at
       curr, if it exists.
       ====================*/
-    private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ){
+    private BSTreeNode<T> remove( BSTreeNode<T> curr, T c){
+	BSTreeNode p, p2, n;
 	if (curr.getData() == c){
-	    if (curr.getLeft() == null && curr.hasRight() == null){
-		curr = null;
+	    BSTreeNode LeftNode, RightNode;
+	    LeftNode = curr.getLeft();
+	    RightNode = root.getRight();
+	    if (LeftNode == null && RightNode == null){
+		return null;
 	    }
-	    else if (curr.getLeft() == null && !(curr.getRight() == null)){
-		curr = curr.getRight();
-		remove(curr.getRight(),c);
+	    else if (LeftNode == null){
+		p = RightNode;
+		return p;
 	    }
-	    else if (!(curr.getLeft() == null) && curr.getRight() == null){
-		curr = curr.getLeft();
-		remove(curr.getLeft(), c);
+	    else if (RightNode == null){
+		p = LeftNode;
+		return p;
 	    }
 	    else{
+		p2 = RightNode;
+		p = RightNode;
+		while (p.getLeft() != null){
+		    p = p.getLeft();
+		}
+		p.setLeft(LeftNode);
+		return p2;
 	    }
+	if (c.compareTo(curr.getData()) < 0){
+	    n = remove(curr.getLeft(), c);
+	    curr.setLeft(n);
 	}
-	return null;
+	else{
+	    n = remove(curr.getRight(), c);
+	    curr.setRight(n);             
+	}
+	return curr;
+     
     }
+	//private BSTreeNode<T> remove( BSTreeNode<T> curr, T c, boolean hasTwo){
+	//if (curr.getData() == c && hasTwo){
+	    
+	    
+	    //}
+	//else if (curr.getData() == c){
+	    //if (curr.getLeft() == null && curr.hasRight() == null){
+		//curr = null;
+		//return root;
+		//}
+	    //else if (curr.getLeft() == null && !(curr.getRight() == null)){
+	        //curr = curr.getRight();
+		//remove(curr.getRight(),curr.getData(),false);
+		//}
+	    //else if (!(curr.getLeft() == null) && curr.getRight() == null){
+		//curr = curr.getLeft();
+		//remove(curr.getLeft(),curr.getData(),false);
+		//}
+	    //else{
+		//Random r = new Random();
+		//int R = r.nextInt(2);
+		//if (R == 0){
+		    //curr = curr.getLeft();
+		    //remove(curr.getLeft(),curr.getData(),true);
+		    //}
+		//else{
+		    //curr = curr.getRight();
+		    //remove(curr.getRight(),curr.getData(),true);
+		    //}
+		
+		//}
+	    //}
+	//else if (curr.getLeft() == null && !(curr.getRight() == null)){
+	    //curr = curr.getRight();
+	    //remove(curr.getRight(),c);
+	    //}
+	//else if (!(curr.getLeft() == null) && curr.getRight() == null){
+	    //curr = curr.getLeft();
+	    //return remove(curr.getLeft(), c, false);
+	    //}
+	//else{
+	    //
+	    //}
+	//return null;
+	//}
 
 
     /*======== public void inOrder()) ==========
