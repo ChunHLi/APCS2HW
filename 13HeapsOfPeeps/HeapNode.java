@@ -1,21 +1,21 @@
-public class HeapNode<T>{
+public class HeapNode{
     
-    private T data;
+    private int data;
     private int index;
     
     public HeapNode(){
     }
 
-    public HeapNode(int Index, T Data){
+    public HeapNode(int Index, int Data){
 	data = Data;
 	index = Index;
     }
 
-    public T getData(){
+    public int getData(){
 	return data;
     }
     
-    public void setData(T Data){
+    public void setData(int Data){
 	data = Data;
     }
     
