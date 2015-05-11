@@ -4,6 +4,8 @@ public class HeapNode{
     private int index;
     
     public HeapNode(){
+	data = 0;
+	index = 0;
     }
 
     public HeapNode(int Index, int Data){
