@@ -18,11 +18,12 @@ public class MyHeap{
     }
     
     public static void main(String[]args){
-	MyHeap A = new MyHeap();
+	MyHeap A = new MyHeap(false);
 	A.add(4);
-	A.add(5);
+	A.add(7);
 	A.add(3);
-	A.add(6);
+	A.add(2);
+	A.add(5);
 	A.remove();
 	System.out.println(A.arrayToString());
 	//System.out.println(A.size());
@@ -51,7 +52,7 @@ public class MyHeap{
     }
 
     public int remove(){
-	HeapNode tmp = ArrayHeap[size()];
+	HeapNode tmp = new HeapNode(1,ArrayHeap[size()].getData());
 	ArrayHeap[size()] = new HeapNode();
 	ArrayHeap[1] = tmp;
 	sizeDown();
@@ -63,7 +64,6 @@ public class MyHeap{
 	if (index * 2 > size()){
 	}
 	else{
-	    boolean Boolean;
 	    if (index * 2 == size()){
 		if (compareTo(ArrayHeap[ArrayHeap[index].getLeftIndex()],ArrayHeap[index])){
 			int tmp = ArrayHeap[index].getData();
@@ -72,7 +72,9 @@ public class MyHeap{
 			removeHelper(ArrayHeap[index].getLeftIndex());
 		    }
 	    }
-	    else if (index * 2 + 1 < size()){
+	    else if (index * 2 + 1 <= size()){
+		System.out.println(index);
+		System.out.println(ArrayHeap[index].getLeftIndex());
 		if ((compareTo(ArrayHeap[ArrayHeap[index].getLeftIndex()],ArrayHeap[index])) && compareTo(ArrayHeap[ArrayHeap[index].getLeftIndex()],ArrayHeap[ArrayHeap[index].getRightIndex()])){
 		    int tmp = ArrayHeap[index].getData();
 		    ArrayHeap[index].setData(ArrayHeap[ArrayHeap[index].getLeftIndex()].getData());
