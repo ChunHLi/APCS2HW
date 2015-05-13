@@ -5,7 +5,7 @@ public class HeapNode{
     
     public HeapNode(){
 	data = 0;
-	index = 0;
+	index = -1;
     }
 
     public HeapNode(int Index, int Data){
