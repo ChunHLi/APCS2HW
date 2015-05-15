@@ -122,6 +122,9 @@ public class MyHeap{
     }
     
     public String arrayToString(){
+    	if (size() == 0){
+    	    return "[]";
+    	}
 	String Str = "[";
 	int counter = 1;
 	while (counter < size()){
