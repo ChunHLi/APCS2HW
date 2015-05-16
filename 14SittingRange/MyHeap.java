@@ -93,9 +93,7 @@ public class MyHeap{
 	}
     }
 		    
-    public int peek(){
-	return ArrayHeap[1].getData();
-    }
+		    	    
 	   
     
     public void sizeUp(){
@@ -142,4 +140,3 @@ public class MyHeap{
 	return isMax && greater || !(isMax || greater);
     }
 }
-
