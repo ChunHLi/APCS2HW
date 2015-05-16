@@ -93,7 +93,9 @@ public class MyHeap{
 	}
     }
 		    
-		    	    
+    public int peek(){
+	return ArrayHeap[1].getData();
+    }
 	   
     
     public void sizeUp(){
